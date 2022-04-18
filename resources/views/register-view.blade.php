@@ -48,7 +48,7 @@ body {
     </style>
 </head>
 <body>
-    
+
     <section class="vh-100 gradient-custom">
 
 
@@ -134,5 +134,4 @@ body {
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.js"
 
->	document.oncontextmenu = function(){return false}
-</script>
+></script>

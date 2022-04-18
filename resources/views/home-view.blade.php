@@ -187,6 +187,14 @@
                     @if(auth()->user()->id_role == 3)
                     <li><a href="register"><i class="fa fa-user-o"></i> Registrar Usuarios</a></li>
                     @endif
+
+                        @if($ok == 0)
+                        <li>
+                            <a href="generarToken"><i class="fa fa-user-o"></i> Generar Token</a></li>
+                        @else
+                        <li><a href="register"><i class="fa fa-user-o"></i> Pedir Token</a></li>
+                        @endif
+
 					<li class="divider"></li>
                             <li>
                                 <a  href="{{ URL('logout') }}"
@@ -229,6 +237,7 @@
 
           <tr>
             @foreach ($usuarios as $usuario)
+            @if(auth()->user()->nombre != $usuario->nombre)
 
             <td>{!! $usuario->nombre !!}</td>
             <td>{!! $usuario->email !!}</td>
@@ -238,20 +247,15 @@
 
             <td>
 			<form id="logout-form2" action="/editarUser/{{$usuario->id}}" method="GET" class="d-none">
-			<input type="submit" value="EDITAR" class="btn btn-success btn-sm">
+			<input type="submit" value="EDITAR" class="btn btn-success btn-sm ">
 		     </form>
 		    </td>
-
-
-
-
-
 			<td>
 			 <form id="logout-form3" action="/Eliminar" method="POST" class="d-none">
              @method("delete")
 			 <input type="hidden" name="id" value="{{$usuario->id}}">
 			 @csrf
-			 <input type="submit" value="ELIMINAR" class="btn btn-danger btn-sm">
+			 <input type="submit" value="ELIMINAR" class="btn btn-danger btn-sm" >
 		     </form>
 
 		    </td>
@@ -260,6 +264,7 @@
           </tr>
 
         </tbody>
+        @endif
 
 
         @endforeach

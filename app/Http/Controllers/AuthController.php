@@ -34,7 +34,7 @@ class AuthController extends Controller
                 'email' => 'required|email',
                 'password' => 'required'
             ]);
-    
+
             $email = $request->input('email');
             $password = $request->input('password');
             if($user = User::where('email', $request->input('email'))->first()){
@@ -45,7 +45,7 @@ class AuthController extends Controller
                         return redirect()->intended('home');
                     }
                 }
-    
+
                 else{
                 if($user->email_verified_at == null){
                     return back()->withErrors([
@@ -160,10 +160,19 @@ class AuthController extends Controller
 
     }
 
-    public function index2()
+    public function index2(Request $request)
    {
     $usuarios = User::get();
-    return view('home-view')->with(compact('usuarios'));
+
+    $ok = 0;
+
+    if($request->ip()=='127.0.0.1')
+    {
+        $ok = 1;
+    }
+
+
+    return view('home-view')->with(compact('usuarios','ok'));
 
 
     }
@@ -211,16 +220,15 @@ class AuthController extends Controller
                     }
     }
 
-    public function GenerarTocken(request $request){
+    public function GenerarTocken(){
         $token = new Token();
         $tok = Str::uuid();
-
-        $token->id_usuario = $request->idusuario;
         $token->tocken = $tok;
         $token->uso = null;
         $token->save();
 
-        return $token;
+        return view('generarToken')->with(compact('tok'));
+
     }
 
 }

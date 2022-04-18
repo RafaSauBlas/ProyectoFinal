@@ -14,7 +14,7 @@ class Tocken extends Migration
     public function up()
     {
         Schema::create('tokens', function (Blueprint $table) {
-            $table->id('id_usuario');
+            $table->id();
             $table->string('tocken');
             $table->timestamp('uso')->nullable();
         });
@@ -27,6 +27,6 @@ class Tocken extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('tokens');
     }
 }

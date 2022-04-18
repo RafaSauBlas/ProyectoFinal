@@ -20,15 +20,45 @@ use Illuminate\Http\Request;
 */
 Route::middleware('guest')->group(function (){
   Route::get('login', function (Request $request) {
+
+    session(['IPVPN' => $request->ip()]);
     if($request->ip() == '127.0.0.1'){
+
         return view('login-view');
     }
+
+
     else{
         return "NECESITA ENTRAR POR VPN PUTO";
-            
+
     }
     })->name('login');
 });
+
+
+
+
+// Route::get('/generarToken', function () {
+//     if($request->ip() == '"IP VPN"'){
+
+//         return view('generarToken');
+//     }
+//     else{
+//         return "A CHINGAR A SU MADRE PUTO";
+
+//     }
+// });
+
+
+
+// Route::get('/generarToken', function () {
+//         return view('generarToken');
+//     });
+
+    Route::post('generarToken', [AuthController::class, 'GenerarTocken']);
+
+
+
 
 Route::get('/register', function () {
     return view('register-view');

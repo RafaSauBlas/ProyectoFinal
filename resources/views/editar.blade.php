@@ -1,7 +1,7 @@
 <form id="login-form" class="form" action="/Editar" method="POST">
 @method("PUT")
 @csrf
-    
+
         <div class="form-group">
             <label for="nombre" class="text-info">Nombre:</label><br>
             <input type="hidden" value="{{$ido}}" name="id">
@@ -50,6 +50,6 @@
       </div>
 
 
-        
+
 
     </form>
