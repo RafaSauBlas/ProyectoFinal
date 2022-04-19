@@ -23,6 +23,7 @@ Route::post('/send-verification-email', [AuthController::class, 'sendVerificatio
 Route::get('/verify-email', [AuthController::class, 'verifyEmail'])->name('verifyEmail');
 
 Route::POST('/generar', [AuthController::class, 'GenerarTocken']);
+Route::POST('/consumir', [AuthController::class, 'Consumir']);
 
 
 Route::delete('/usuarios/{id}', [AuthController::class, 'delete']);

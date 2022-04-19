@@ -177,6 +177,18 @@ class AuthController extends Controller
 
     }
 
+    public function Consumir(request $request){
+        $Token = Token::where("tocken", $request->token)->get()[0];
+        if($Token->uso != null){
+            return "Este Token ya ha sido utilizado.";
+        }
+        else{
+            $Token->uso = date('y-m-d');
+            $Token->save();
+            return $Token;
+        }
+    }
+
 
     public function update(Request $request)
     {
